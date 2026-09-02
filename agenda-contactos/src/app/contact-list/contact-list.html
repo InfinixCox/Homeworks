@@ -1,0 +1,8 @@
+@for (contacto of contactos; track contacto.id) {
+  <app-contact-item
+    [id]="contacto.id"
+    [nombre]="contacto.nombre"
+    [telefono]="contacto.telefono"
+    (eliminar)="onEliminar($event)">
+  </app-contact-item>
+}
