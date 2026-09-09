@@ -1,0 +1,50 @@
+<div class="contenedor-navegador">
+  <h2>Historial de Navegacion</h2>
+
+  <div class="campo-url-contenedor">
+    <input 
+      type="text" 
+      [value]="nodoActual?.value?.url || ''" 
+      readonly 
+      class="campo-url" 
+    />
+  </div>
+
+  <div class="botones-navegacion">
+    <button (click)="retroceder()" [disabled]="!nodoActual?.prev">
+      Atras
+    </button>
+    <button (click)="avanzar()" [disabled]="!nodoActual?.next">
+      Adelante
+    </button>
+  </div>
+  
+  @if (nodoActual) {
+    <div class="detalle-pagina">
+      <h3>{{ nodoActual.value.title }}</h3>
+      <p><strong>Hora de ingreso:</strong> {{ nodoActual.value.visitedTime }}</p>
+
+      <div class="inspeccion-nodos">
+        <p>
+          <strong>Nodo previo (prev):</strong>
+          @if (nodoActual.prev) {
+            <span>{{ nodoActual.prev.value.title }}</span>
+          } @else {
+            <span class="limite">Ninguno (Head)</span>
+          }
+        </p>
+
+        <p>
+          <strong>Nodo siguiente (next):</strong>
+          @if (nodoActual.next) {
+            <span>{{ nodoActual.next.value.title }}</span>
+          } @else {
+            <span class="limite">Ninguno (Tail)</span>
+          }
+        </p>
+      </div>
+    </div>
+  } @else {
+    <p>El historial esta vacio.</p>
+  }
+</div>

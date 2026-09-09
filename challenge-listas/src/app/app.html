@@ -1,0 +1,26 @@
+<main class="panel-principal">
+  <header>
+    <h1>Estructuras de Datos II - Challenge 03</h1>
+    <nav class="barra-pestanas">
+      <button 
+        [class.activo]="vistaActiva === 'canciones'" 
+        (click)="cambiarVista('canciones')">
+        Reproductor de Canciones (Linked List)
+      </button>
+
+      <button 
+        [class.activo]="vistaActiva === 'navegador'" 
+        (click)="cambiarVista('navegador')">
+        Navegador Web (Double Linked List)
+      </button>
+    </nav>
+  </header>
+
+  <section class="vista-contenido">
+    @if (vistaActiva === 'canciones') {
+      <app-reproductor-canciones></app-reproductor-canciones>
+    } @else {
+      <app-navegador></app-navegador>
+    }
+  </section>
+</main>

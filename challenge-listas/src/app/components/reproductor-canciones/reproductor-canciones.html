@@ -1,0 +1,32 @@
+<div class="contenedor-reproductor">
+  <h2>Reproductor de Canciones</h2>
+
+  @if (nodoActual) {
+    <div class="tarjeta-cancion">
+      <p class="estado">Reproduciendo:</p>
+      <h3>{{ nodoActual.value.title }}</h3>
+      <p><strong>Artista:</strong> {{ nodoActual.value.artist }}</p>
+      <p><strong>Duracion:</strong> {{ nodoActual.value.duration }}</p>
+
+      <br>
+
+      <div class="bloque-siguiente">
+        <strong>Siguiente en la lista:</strong>
+        @if (nodoActual.next) {
+          <span>{{ nodoActual.next.value.title }}</span>
+        } @else {
+          <span class="fin-lista">Fin de la lista de reproduccion</span>
+        }
+      </div>
+    </div>
+  } @else {
+    <p>No hay canciones en la lista.</p>
+  }
+
+  <div class="botones-control">
+    <button (click)="reiniciarLista()">Volver al inicio (Head)</button>
+    <button (click)="siguienteCancion()" [disabled]="!nodoActual?.next">
+      Siguiente cancion
+    </button>
+  </div>
+</div>
