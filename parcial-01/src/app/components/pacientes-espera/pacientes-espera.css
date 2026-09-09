@@ -1,0 +1,17 @@
+div {
+  margin-bottom: 10px;
+}
+
+input {
+  margin-right: 5px;
+  padding: 4px;
+}
+
+button {
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+h3 {
+  text-align: center;
+}

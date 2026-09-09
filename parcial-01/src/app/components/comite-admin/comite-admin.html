@@ -1,0 +1,24 @@
+<div>
+  <h3>Comite Administrativo</h3>
+  <p>Total de miembros: {{ listaComite.length }}</p>
+
+  @if (miembroActual) {
+    <div>
+      <h4>Miembro en Consulta:</h4>
+      <p>Nombre: {{ miembroActual.value.nombre }}</p>
+      <p>Cargo: {{ miembroActual.value.cargo }}</p>
+    </div>
+
+    <div>
+      <button (click)="rotarAnterior()">Rotar Izquierda</button>
+      <button (click)="rotarSiguiente()">Rotar Derecha</button>
+    </div>
+
+    <div>
+      <p>Anterior en circulo: {{ miembroActual.prev?.value?.nombre }}</p>
+      <p>Siguiente en circulo: {{ miembroActual.next?.value?.nombre }}</p>
+    </div>
+  } @else {
+    <p>No hay miembros en el comite.</p>
+  }
+</div>

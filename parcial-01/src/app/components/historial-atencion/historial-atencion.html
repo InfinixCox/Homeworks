@@ -1,0 +1,36 @@
+<div>
+  <h3>Historial de Atencion</h3>
+  <p>Total de atenciones: {{ historial.length }}</p>
+
+  @if (nodoActual) {
+    <div>
+      <h4>Registro Actual del Historial:</h4>
+      <p>Paciente: {{ nodoActual.value.pacienteNombre }}</p>
+      <p>Medico que atendio: {{ nodoActual.value.medicoNombre }}</p>
+      <p>Hora: {{ nodoActual.value.horaAtencion }}</p>
+    </div>
+
+    <div>
+      <button (click)="irAtras()" [disabled]="!nodoActual.prev">
+        Atras (.prev)
+      </button>
+
+      <button (click)="irAdelante()" [disabled]="!nodoActual.next">
+        Adelante (.next)
+      </button>
+    </div>
+
+    <div>
+      <p>
+        Anterior: 
+        {{ nodoActual.prev ? nodoActual.prev.value.pacienteNombre : '(Primer registro)' }}
+      </p>
+      <p>
+        Siguiente: 
+        {{ nodoActual.next ? nodoActual.next.value.pacienteNombre : '(Ultimo registro)' }}
+      </p>
+    </div>
+  } @else {
+    <p>No se han registrado atenciones todavia.</p>
+  }
+</div>

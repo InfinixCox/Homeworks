@@ -1,0 +1,49 @@
+<div>
+  <h3>Pacientes en Espera</h3>
+  <p>Total en espera: {{ listaEspera.length }}</p>
+
+  <div>
+    <input 
+      type="text" 
+      placeholder="Nombre del paciente" 
+      [value]="nombreTemp"
+      (change)="capturaNombre($event)" />
+
+    <input 
+      type="text" 
+      placeholder="Motivo de consulta" 
+      [value]="motivoTemp"
+      (change)="capturaMotivo($event)" />
+
+    <button (click)="agregarPaciente()">Agregar Paciente</button>
+  </div>
+
+  <div>
+    <button (click)="atenderPaciente()" [disabled]="!listaEspera.head">
+      Atender Paciente
+    </button>
+  </div>
+
+  <div>
+    @if (listaEspera.head) {
+      <div>
+        <h4>Paciente en turno (Head):</h4>
+        <p>Nombre: {{ listaEspera.head.value.nombre }}</p>
+        <p>Motivo: {{ listaEspera.head.value.motivo }}</p>
+        <p>Llegada: {{ listaEspera.head.value.horaLlegada }}</p>
+      </div>
+
+      <div>
+        <p>Siguiente en lista:
+        @if (listaEspera.head.next) {
+          {{ listaEspera.head.next.value.nombre }}
+        } @else {
+          null
+        }
+        </p>
+      </div>
+    } @else {
+      <p>No hay pacientes en espera.</p>
+    }
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div>
+  <h3>Medicos de Guardia</h3>
+  <p class="rotacion">Rotacion automatica cada 10 segundos.</p>
+
+  @if (medicoActual) {
+    <div>
+      <h4>Medico de Guardia Activo:</h4>
+      <p>Nombre: {{ medicoActual.value.nombre }}</p>
+      <p>Especialidad: {{ medicoActual.value.especialidad }}</p>
+    </div>
+
+    <div>
+      <p>Siguiente medico en guardia:
+      @if (medicoActual.next) {
+        {{ medicoActual.next.value.nombre }} ({{ medicoActual.next.value.especialidad }})
+      }
+      </p>
+    </div>
+
+    <button (click)="rotarSiguiente()">Rotar Manualmente</button>
+  } @else {
+    <p>No hay medicos en lista.</p>
+  }
+</div>
