@@ -1,0 +1,76 @@
+<main>
+  <h1>Estructuras de Datos II - Challenge 04</h1>
+
+  <h2>Agregar un libro</h2>
+
+  <form>
+    <div class="campo">
+      <label for="nombre">Nombre:</label>
+      <input
+        id="nombre"
+        type="text"
+        (change)="capturarNombre($event)"
+      >
+    </div>
+
+    <div class="campo">
+      <label for="isbn">ISBN:</label>
+      <input
+        id="isbn"
+        type="text"
+        (change)="capturarIsbn($event)"
+      >
+    </div>
+
+    <div class="campo">
+      <label for="autor">Autor:</label>
+      <input
+        id="autor"
+        type="text"
+        (change)="capturarAutor($event)"
+      >
+    </div>
+
+    <div class="campo">
+      <label for="editorial">Editorial:</label>
+      <input
+        id="editorial"
+        type="text"
+        (change)="capturarEditorial($event)"
+      >
+    </div>
+
+    <button type="button" (click)="pushLibro()">
+      Agregar libro
+    </button>
+  </form>
+
+  @if (mensaje !== '') {
+    <p>{{ mensaje }}</p>
+  }
+
+  <h2>Libros en la pila</h2>
+
+  <p>Total de libros: {{ libros.length }}</p>
+
+  <button
+    type="button"
+    (click)="popLibro()"
+    [disabled]="libros.length === 0"
+  >
+    Retirar libro
+  </button>
+
+  @if (libros.length === 0) {
+    <p>La pila está vacía.</p>
+  }
+
+  @for (libro of librosParaMostrar; track libro) {
+    <div class="libro">
+      <h3>{{ libro.nombre }}</h3>
+      <p>ISBN: {{ libro.isbn }}</p>
+      <p>Autor: {{ libro.autor }}</p>
+      <p>Editorial: {{ libro.editorial }}</p>
+    </div>
+  }
+</main>
