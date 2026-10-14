@@ -1,0 +1,36 @@
+<div class="nodo">
+  <button
+    type="button"
+    class="elemento"
+    [class.seleccionado]="nodo.id === seleccionadoId"
+    (click)="seleccionar.emit(nodo)"
+  >
+    @if (nodo.tipo === 'carpeta') {
+      <span class="icono" aria-hidden="true">📁</span>
+    } @else {
+      <span class="icono" aria-hidden="true">📄</span>
+    }
+
+    <span class="nombre">{{ nodo.nombre }}</span>
+
+    <span class="tipo">
+      @if (nodo.tipo === 'carpeta') {
+        Carpeta
+      } @else {
+        Archivo
+      }
+    </span>
+  </button>
+
+  @if (nodo.tipo === 'carpeta') {
+    <div class="hijos">
+      @for (hijo of nodo.hijos; track hijo.id) {
+        <app-nodo-vista
+          [nodo]="hijo"
+          [seleccionadoId]="seleccionadoId"
+          (seleccionar)="seleccionar.emit($event)"
+        ></app-nodo-vista>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,136 @@
+<main class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+  <span>Usuario: {{ auth.usuario() }}</span>
+
+  <button
+    type="button"
+    class="btn btn-outline-secondary btn-sm"
+    (click)="salir()"
+    [disabled]="pendiente()"
+  >
+    Cerrar sesión
+  </button>
+  </div>
+
+  <h1 class="text-center mb-4">
+    Explorador de carpetas y archivos - Parcial 02
+  </h1>
+
+  <div class="mb-3">
+  <button
+    type="button"
+    class="btn btn-outline-secondary btn-sm"
+    (click)="cargarArbol(nodoSeleccionado.id)"
+    [disabled]="pendiente()"
+  >
+    Actualizar árbol
+  </button>
+</div>
+
+@if (pendiente()) {
+  <p>Procesando datos...</p>
+}
+
+  <section class="mb-4">
+  <h2 class="h4 mb-3">Crear carpeta o archivo</h2>
+
+  <p>
+    Ubicación seleccionada:
+    <strong>{{ nodoSeleccionado.nombre }}</strong>
+  </p>
+
+  @if (nodoSeleccionado.tipo === 'carpeta') {
+    <div class="row g-3 align-items-end">
+      <div class="col-md-6">
+        <label for="nombreNuevo" class="form-label">
+          Nombre
+        </label>
+
+        <input
+          id="nombreNuevo"
+          type="text"
+          class="form-control"
+          [ngModel]="nombreNuevo()"
+          (ngModelChange)="nombreNuevo.set($event)"
+          [disabled]="pendiente() || !cargado()"
+        >
+      </div>
+
+      <div class="col-md-3">
+        <label for="tipoNuevo" class="form-label">
+          Tipo
+        </label>
+
+        <select
+          id="tipoNuevo"
+          class="form-select"
+          [ngModel]="tipoNuevo()"
+          (ngModelChange)="tipoNuevo.set($event)"
+          [disabled]="pendiente() || !cargado()"
+        >
+          <option value="carpeta">Carpeta</option>
+          <option value="archivo">Archivo</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="crearNodo()"
+          [disabled]="pendiente() || !cargado()"
+        >
+          Crear
+        </button>
+      </div>
+    </div>
+  } @else {
+    <p class="text-danger">
+      Este elemento es un archivo y no puede contener hijos.
+      Selecciona una carpeta para crear un elemento.
+    </p>
+  }
+
+  @if (mensaje() !== '') {
+    <p class="mt-3">{{ mensaje() }}</p>
+  }
+  </section>
+
+  <div class="row g-4">
+    <section class="col-md-7">
+      <h2 class="h4 mb-3">Carpetas y archivos</h2>
+
+      <app-nodo-vista
+        [nodo]="arbol.raiz"
+        [seleccionadoId]="nodoSeleccionado.id"
+        (seleccionar)="seleccionarNodo($event)"
+      ></app-nodo-vista>
+    </section>
+
+    <section class="col-md-5">
+      <h2 class="h4 mb-3">Elemento seleccionado</h2>
+
+      <p class="d-flex align-items-center gap-2">
+        @if (nodoSeleccionado.tipo === 'carpeta') {
+          <span class="fs-3" aria-hidden="true">📁</span>
+        } @else {
+          <span class="fs-3" aria-hidden="true">📄</span>
+        }
+
+        <span>{{ nodoSeleccionado.nombre }}</span>
+      </p>
+
+      <p>
+        <strong>Tipo:</strong>
+        {{ nodoSeleccionado.tipo }}
+      </p>
+
+      @if (nodoSeleccionado.id !== 'raiz') {
+        <p>
+          <strong>Creador:</strong>
+          {{ nodoSeleccionado.correoCreador }}
+        </p>
+      }
+    </section>
+  </div>
+</main>

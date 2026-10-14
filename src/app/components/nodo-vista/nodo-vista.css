@@ -1,0 +1,52 @@
+.nodo {
+  margin: 6px 0;
+}
+
+.elemento {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: #333333;
+  cursor: pointer;
+  text-align: left;
+}
+
+.elemento:hover {
+  background: #f2f4f7;
+}
+
+.elemento.seleccionado {
+  background: #e8effa;
+  border-color: #b8cbea;
+}
+
+.elemento:focus-visible {
+  outline: 2px solid #2459a6;
+  outline-offset: 2px;
+}
+
+.icono {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.nombre {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.tipo {
+  font-size: 12px;
+  color: #666666;
+}
+
+.hijos {
+  margin-left: 20px;
+  padding-left: 12px;
+  border-left: 1px solid #dddddd;
+}
