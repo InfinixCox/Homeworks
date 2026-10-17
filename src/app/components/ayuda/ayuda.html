@@ -1,0 +1,17 @@
+<h2>{{ titulo }}</h2>
+
+@if (titulo === 'Ayuda') {
+  <p>Selecciona Preguntas frecuentes o Contacto en el menú lateral.</p>
+}
+
+@if (titulo === 'Preguntas frecuentes') {
+  <h3>¿Cómo cambio de sección?</h3>
+  <p>Haz clic en una opción del menú lateral.</p>
+
+  <h3>¿Cómo están organizadas las opciones?</h3>
+  <p>Los menús y submenús están organizados en un árbol n-ario.</p>
+}
+
+@if (titulo === 'Contacto') {
+  <p>Para solicitar ayuda con la materia, contacta al profesor.</p>
+}

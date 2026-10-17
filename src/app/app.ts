@@ -1,12 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MenuLateral } from './components/menu-lateral/menu-lateral';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [MenuLateral, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('Nary-tree-menu');
 }
