@@ -1,0 +1,25 @@
+:host {
+  display: block;
+}
+
+.opcion {
+  margin-bottom: 8px;
+}
+
+a {
+  display: block;
+  padding: 8px;
+  color: #222;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: #e2e2e2;
+}
+
+.submenus {
+  margin-top: 5px;
+  margin-left: 15px;
+  padding-left: 8px;
+  border-left: 1px solid #aaa;
+}

@@ -1,0 +1,19 @@
+<main>
+  <h1>Estructuras de Datos II - Challenge 08</h1>
+
+  <p>Usuario: {{ auth.usuario() }}</p>
+
+  <nav>
+    <a routerLink="/arbol">Árbol binario</a>
+
+    <a routerLink="/menu">Menú n-ario</a>
+
+    <button type="button" (click)="salir()">
+      Cerrar sesión
+    </button>
+  </nav>
+
+  <hr>
+
+  <router-outlet></router-outlet>
+</main>

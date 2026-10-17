@@ -1,0 +1,15 @@
+<div class="opcion">
+  <a [routerLink]="'/menu/' + nodo.enlace">
+    {{ nodo.titulo }}
+  </a>
+
+  @if (nodo.hijos.length > 0) {
+    <div class="submenus">
+      @for (hijo of nodo.hijos; track hijo) {
+        <app-nodo-menu-vista
+          [nodo]="hijo"
+        ></app-nodo-menu-vista>
+      }
+    </div>
+  }
+</div>

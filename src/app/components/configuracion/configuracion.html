@@ -1,0 +1,15 @@
+<h2>{{ titulo }}</h2>
+
+@if (titulo === 'Configuración') {
+  <p>Selecciona Cuenta o Seguridad en el menú lateral.</p>
+}
+
+@if (titulo === 'Cuenta') {
+  <p>Esta sección contiene la información de la cuenta.</p>
+  <p>Tipo de cuenta: estudiante.</p>
+}
+
+@if (titulo === 'Seguridad') {
+  <p>Esta sección contiene las opciones de seguridad.</p>
+  <p>No compartas tu contraseña con otras personas.</p>
+}

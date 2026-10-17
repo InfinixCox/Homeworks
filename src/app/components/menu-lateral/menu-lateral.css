@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  width: 220px;
+}
+
+nav {
+  padding: 15px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+}
+
+h2 {
+  margin-top: 0;
+  text-align: center;
+}

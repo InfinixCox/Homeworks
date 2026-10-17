@@ -1,0 +1,35 @@
+<main>
+  <h1>Estructuras de Datos II - Challenge 08</h1>
+
+  <h2>Iniciar sesión</h2>
+
+  <div class="campo">
+    <label for="correo">Correo:</label>
+
+    <input
+      id="correo"
+      type="email"
+      [value]="correo()"
+      (change)="capturarCorreo($event)"
+    >
+  </div>
+
+  <div class="campo">
+    <label for="clave">Contraseña:</label>
+
+    <input
+      id="clave"
+      type="password"
+      [value]="clave()"
+      (change)="capturarClave($event)"
+    >
+  </div>
+
+  <button type="button" (click)="entrar()">
+    Iniciar sesión
+  </button>
+
+  @if (mensaje() !== '') {
+    <p>{{ mensaje() }}</p>
+  }
+</main>
