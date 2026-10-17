@@ -1,0 +1,70 @@
+:host {
+  display: block;
+}
+
+.node-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.node {
+  background-color: #58a6ff;
+  padding: 10px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  min-width: 20px;
+}
+
+.children {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  padding-top: 20px;
+}
+
+.children::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 20px;
+  border-left: 1px solid #555;
+}
+
+.rama {
+  position: relative;
+  padding: 20px 10px 0;
+}
+
+.rama::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50%;
+  border-top: 1px solid #555;
+}
+
+.rama::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 20px;
+  border-left: 1px solid #555;
+}
+
+.izquierda::before {
+  left: 50%;
+}
+
+.derecha::before {
+  left: 0;
+}
+
+.vacio {
+  min-width: 40px;
+}
