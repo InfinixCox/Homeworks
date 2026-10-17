@@ -1,0 +1,51 @@
+<main>
+  <h1>Estructuras de Datos II - Challenge 05</h1>
+
+  <h2>Agregar una persona</h2>
+
+  <form>
+    <div class="campo">
+      <label for="nombre">Nombre:</label>
+      <input id="nombre" type="text" [value]="nombre" (change)="capturarNombre($event)">
+    </div>
+
+    <div class="campo">
+      <label for="monto">Monto a retirar:</label>
+      <input id="monto" type="number" [value]="monto" (change)="capturarMonto($event)">
+    </div>
+
+    <button type="button" (click)="enqueuePersona()">Agregar a la cola</button>
+  </form>
+
+  @if (mensaje !== '') {
+    <p>{{ mensaje }}</p>
+  }
+
+  <h2>Cola del cajero</h2>
+
+  <p>Personas en la cola: {{ cola.length }}</p>
+
+  @if (cola.length > 0) {
+    <p>Siguiente en ser atendido: {{ cola[0].nombre }}</p>
+  }
+
+  <button type="button" (click)="dequeuePersona()" [disabled]="cola.length === 0">
+    Atender persona
+  </button>
+
+  @if (personaAtendida !== '') {
+    <p>Última persona atendida: {{ personaAtendida }}</p>
+  }
+
+  @if (cola.length === 0) {
+    <p>La cola está vacía.</p>
+  }
+
+  @for (persona of cola; track persona; let i = $index) {
+    <div class="persona">
+      <h3>{{ i + 1 }}. {{ persona.nombre }}</h3>
+      <p>Monto a retirar: ${{ persona.monto }}</p>
+      <p>Hora de llegada: {{ mostrarHora(persona.fechaLlegada) }}</p>
+    </div>
+  }
+</main>
