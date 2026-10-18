@@ -1,0 +1,72 @@
+<main class="pagina acceso">
+  <h1>Estructuras de Datos II - Challenge 09</h1>
+
+  <section class="panel-acceso">
+    <header class="cabecera-acceso">
+      <p class="nombre-aplicacion">Gestor de tareas</p>
+      <h2>Iniciar sesión</h2>
+    </header>
+
+    <div class="contenido-acceso">
+      <div class="campo">
+        <label for="correo" class="form-label">
+          Correo electrónico
+        </label>
+
+        <input
+          id="correo"
+          type="email"
+          class="form-control"
+          autocomplete="username"
+          [value]="correo()"
+          (change)="capturarCorreo($event)"
+          [disabled]="pendiente()"
+        >
+      </div>
+
+      <div class="campo">
+        <label for="clave" class="form-label">
+          Contraseña
+        </label>
+
+        <input
+          id="clave"
+          type="password"
+          class="form-control"
+          autocomplete="current-password"
+          [value]="clave()"
+          (change)="capturarClave($event)"
+          [disabled]="pendiente()"
+        >
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-primary boton-acceso"
+        (click)="entrar()"
+        [disabled]="pendiente()"
+      >
+        @if (pendiente()) {
+          Procesando...
+        } @else {
+          Iniciar sesión
+        }
+      </button>
+
+      <div class="mensajes" aria-live="polite">
+        @if (mensaje() !== '') {
+          <p class="text-danger">{{ mensaje() }}</p>
+        }
+
+        @if (auth.error() !== '') {
+          <p class="text-danger">{{ auth.error() }}</p>
+        }
+      </div>
+    </div>
+
+    <footer class="pie-acceso">
+      <span>¿No tienes cuenta?</span>
+      <a routerLink="/registro">Registrarse</a>
+    </footer>
+  </section>
+</main>

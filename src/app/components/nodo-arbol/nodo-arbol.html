@@ -1,0 +1,23 @@
+<div class="node-container">
+  <div class="node">{{ nodo.valor }}</div>
+
+  @if (!nodo.isLeaf()) {
+    <div class="children">
+      @if (nodo.izquierda) {
+        <div class="rama izquierda">
+          <app-nodo-arbol [nodo]="nodo.izquierda"></app-nodo-arbol>
+        </div>
+      } @else {
+        <div class="vacio"></div>
+      }
+
+      @if (nodo.derecha) {
+        <div class="rama derecha">
+          <app-nodo-arbol [nodo]="nodo.derecha"></app-nodo-arbol>
+        </div>
+      } @else {
+        <div class="vacio"></div>
+      }
+    </div>
+  }
+</div>

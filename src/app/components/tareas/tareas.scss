@@ -1,0 +1,143 @@
+$color-principal: #365f82;
+$color-borde: #d3d9df;
+$color-fondo: #f5f7f9;
+$color-realizada: #666;
+
+:host {
+  display: block;
+}
+
+.pantalla-tareas {
+  max-width: 850px;
+  margin: 0 auto;
+
+  > h2 {
+    margin-bottom: 12px;
+    color: $color-principal;
+    text-align: center;
+    font-size: 1.7rem;
+  }
+
+  > p {
+    margin-bottom: 20px;
+    color: #555;
+    text-align: center;
+    line-height: 1.6;
+  }
+}
+
+.formulario-tarea {
+  margin: 25px 0;
+  padding: 22px;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+  border-radius: 4px;
+
+  h3 {
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $color-borde;
+    font-size: 1.25rem;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  input,
+  textarea {
+    padding: 9px 11px;
+    border-color: #aeb9c3;
+    border-radius: 3px;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: $color-principal;
+    box-shadow: none;
+    outline: 2px solid #d5e2ed;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .btn-primary {
+    background-color: $color-principal;
+    border-color: $color-principal;
+  }
+
+  .btn-primary:hover {
+    background-color: #294b68;
+    border-color: #294b68;
+  }
+
+  .btn {
+    padding: 8px 14px;
+    border-radius: 3px;
+  }
+}
+
+.tarea {
+  margin-top: 18px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid $color-borde;
+  border-left: 4px solid $color-principal;
+  border-radius: 3px;
+
+  h3 {
+    margin: 0 0 12px;
+    color: #294b68;
+    font-size: 1.2rem;
+    overflow-wrap: anywhere;
+  }
+
+  p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .realizada {
+    color: $color-realizada;
+    text-decoration: line-through;
+  }
+
+  .acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #e1e5e9;
+  }
+
+  .btn {
+    padding: 6px 11px;
+    border-radius: 3px;
+  }
+
+  .btn-outline-primary {
+    color: $color-principal;
+    border-color: $color-principal;
+  }
+
+  .btn-outline-primary:hover {
+    color: white;
+    background-color: $color-principal;
+  }
+}
+
+@media (max-width: 600px) {
+  .formulario-tarea,
+  .tarea {
+    padding: 16px;
+  }
+
+  .tarea .acciones .btn {
+    flex: 1 1 130px;
+  }
+}

@@ -1,0 +1,9 @@
+<nav>
+  <h2>{{ arbol.raiz.titulo }}</h2>
+
+  @for (nodo of arbol.raiz.hijos; track nodo) {
+    <app-nodo-menu-vista
+      [nodo]="nodo"
+    ></app-nodo-menu-vista>
+  }
+</nav>

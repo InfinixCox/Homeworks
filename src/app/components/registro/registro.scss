@@ -1,0 +1,109 @@
+$color-principal: #365f82;
+$color-oscuro: #294b68;
+
+:host {
+  display: block;
+  padding: 25px 0;
+}
+
+.acceso {
+  padding: 0 20px;
+}
+
+.acceso > h1 {
+  margin-bottom: 35px;
+  font-size: 1.7rem;
+  line-height: 1.4;
+}
+
+.panel-acceso {
+  max-width: 420px;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: 4px solid $color-principal;
+  border-radius: 4px;
+}
+
+.cabecera-acceso {
+  padding: 24px 25px 18px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+}
+
+.nombre-aplicacion {
+  margin: 0 0 8px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.contenido-acceso {
+  padding: 25px;
+}
+
+.campo {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  margin-bottom: 7px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.form-control {
+  padding: 10px 12px;
+  border-color: #aaa;
+  border-radius: 3px;
+
+  &:focus {
+    border-color: $color-principal;
+    box-shadow: none;
+    outline: 2px solid #d5e2ed;
+  }
+}
+
+.boton-acceso {
+  width: 100%;
+  padding: 10px;
+  background-color: $color-principal;
+  border-color: $color-principal;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: $color-oscuro;
+    border-color: $color-oscuro;
+  }
+
+  &:disabled {
+    background-color: $color-principal;
+    border-color: $color-principal;
+  }
+}
+
+.mensajes p {
+  margin: 16px 0 0;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.pie-acceso {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 16px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  font-size: 0.95rem;
+
+  a {
+    color: $color-oscuro;
+  }
+}

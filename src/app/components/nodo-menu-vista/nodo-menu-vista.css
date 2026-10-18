@@ -1,0 +1,37 @@
+:host {
+  display: block;
+}
+
+.opcion {
+  margin-bottom: 7px;
+}
+
+a {
+  display: block;
+  padding: 10px 12px;
+  color: #294b68;
+  background-color: white;
+  border: 1px solid #d7dde3;
+  border-radius: 3px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+a:hover {
+  background-color: #e7edf3;
+  border-color: #9aaebe;
+}
+
+a:focus-visible {
+  outline: 2px solid #365f82;
+  outline-offset: 2px;
+}
+
+.submenus {
+  margin-top: 8px;
+  margin-left: 13px;
+  padding-left: 10px;
+  border-left: 2px solid #bccbd7;
+}

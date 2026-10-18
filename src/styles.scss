@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+$ancho-pagina: 1100px;
+$ancho-formulario: 380px;
+$color-principal: #365f82;
+$color-texto: #222;
+
+body {
+  margin: 0;
+  background-color: white;
+  color: $color-texto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pagina {
+  max-width: $ancho-pagina;
+  margin: 20px auto;
+  padding: 0 15px;
+
+  > h1 {
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 2rem;
+  }
+}
+
+.formulario-acceso {
+  max-width: $ancho-formulario;
+  margin: 30px auto;
+  text-align: center;
+
+  .campo {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+}
+
+.contenido {
+  h2 {
+    margin: 0 0 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+    color: $color-principal;
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    margin: 24px 0 10px;
+    font-size: 1.1rem;
+  }
+
+  p {
+    margin-bottom: 14px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+}

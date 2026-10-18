@@ -1,0 +1,52 @@
+<main>
+  <h2>Árbol binario</h2>
+
+  <h2>Insertar un número</h2>
+
+  <div class="campo">
+    <input
+      type="number"
+      [value]="valor"
+      (change)="capturarValor($event)"
+    >
+
+    <button type="button" (click)="insertarNumero()">
+      Insertar
+    </button>
+  </div>
+
+  @if (mensaje !== '') {
+    <p>{{ mensaje }}</p>
+  }
+
+  <h2>Buscar un número</h2>
+
+  <div class="campo">
+    <input
+      type="number"
+      (change)="capturarValorBuscar($event)"
+    >
+
+    <button type="button" (click)="buscarNumero()">
+      Buscar
+    </button>
+  </div>
+
+  @if (resultadoBusqueda !== '') {
+    <p>{{ resultadoBusqueda }}</p>
+  }
+
+  <h2>Recorridos</h2>
+
+  <p>PreOrden: {{ preorden.join(' ') }}</p>
+  <p>InOrden: {{ inorden.join(' ') }}</p>
+  <p>PostOrden: {{ postorden.join(' ') }}</p>
+
+  <h2>Árbol</h2>
+
+  @if (arbol.raiz) {
+    <div class="tree">
+      <app-nodo-arbol [nodo]="arbol.raiz"></app-nodo-arbol>
+    </div>
+  }
+</main>

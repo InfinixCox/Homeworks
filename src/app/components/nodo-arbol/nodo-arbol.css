@@ -1,0 +1,76 @@
+:host {
+  display: block;
+}
+
+.node-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 8px;
+  color: white;
+  background-color: #365f82;
+  border: 1px solid #294b68;
+  border-radius: 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.children {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  padding-top: 20px;
+}
+
+.children::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 20px;
+  border-left: 1px solid #788896;
+}
+
+.rama {
+  position: relative;
+  padding: 20px 10px 0;
+}
+
+.rama::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50%;
+  border-top: 1px solid #788896;
+}
+
+.rama::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 20px;
+  border-left: 1px solid #788896;
+}
+
+.izquierda::before {
+  left: 50%;
+}
+
+.derecha::before {
+  left: 0;
+}
+
+.vacio {
+  min-width: 44px;
+}

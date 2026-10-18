@@ -1,0 +1,85 @@
+:host {
+  display: block;
+}
+
+.pagina {
+  margin-top: 25px;
+  margin-bottom: 40px;
+}
+
+.barra-sesion {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
+
+.barra-sesion button {
+  padding: 8px 14px;
+  border-radius: 3px;
+}
+
+h1 {
+  padding-bottom: 18px;
+  border-bottom: 2px solid #365f82;
+  font-size: 1.8rem;
+  line-height: 1.4;
+}
+
+main > p {
+  margin-bottom: 20px;
+  color: #555;
+  overflow-wrap: anywhere;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 30px;
+  padding: 12px;
+  background-color: #f3f5f7;
+  border: 1px solid #d5dbe0;
+  border-radius: 4px;
+}
+
+nav a {
+  display: inline-block;
+  padding: 9px 15px;
+  color: #294b68;
+  background-color: white;
+  border: 1px solid #c9d2da;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+nav a:hover {
+  background-color: #e8eef3;
+  border-color: #365f82;
+}
+
+nav a:focus-visible {
+  outline: 2px solid #365f82;
+  outline-offset: 2px;
+}
+
+hr {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  nav {
+    gap: 8px;
+  }
+
+  nav a {
+    flex: 1 1 140px;
+  }
+}

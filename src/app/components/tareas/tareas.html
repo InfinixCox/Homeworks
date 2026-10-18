@@ -1,0 +1,147 @@
+<section class="pantalla-tareas">
+  <h2>Tareas compartidas</h2>
+
+  <p>
+    Todos los usuarios autenticados pueden ver las tareas.
+    Solo su creador puede modificarlas.
+  </p>
+
+  <div class="formulario-tarea">
+    @if (tareaEditar === null) {
+      <h3>Crear tarea</h3>
+    } @else {
+      <h3>Editar tarea</h3>
+    }
+
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título:</label>
+
+      <input
+        id="titulo"
+        type="text"
+        class="form-control"
+        maxlength="100"
+        [value]="titulo"
+        (change)="capturarTitulo($event)"
+        [disabled]="pendiente()"
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">
+        Descripción:
+      </label>
+
+      <textarea
+        id="descripcion"
+        class="form-control"
+        rows="3"
+        maxlength="1000"
+        [value]="descripcion"
+        (change)="capturarDescripcion($event)"
+        [disabled]="pendiente()"
+      ></textarea>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="guardar()"
+      [disabled]="pendiente()"
+    >
+      @if (tareaEditar === null) {
+        Crear tarea
+      } @else {
+        Guardar cambios
+      }
+    </button>
+
+    @if (tareaEditar !== null) {
+      <button
+        type="button"
+        class="btn btn-secondary ms-2"
+        (click)="cancelarEdicion()"
+        [disabled]="pendiente()"
+      >
+        Cancelar
+      </button>
+    }
+  </div>
+
+  @if (pendiente()) {
+    <p>Guardando cambios...</p>
+  }
+
+  @if (mensaje !== '') {
+    <p class="mt-3">{{ mensaje }}</p>
+  }
+
+  @if (datos.error() !== '') {
+    <p class="text-danger mt-3">{{ datos.error() }}</p>
+  }
+
+  @if (datos.cargando()) {
+    <p>Cargando tareas...</p>
+  } @else {
+    <p>Total de tareas: {{ datos.tareas().length }}</p>
+
+    @if (datos.tareas().length === 0 && datos.error() === '') {
+      <p>No hay tareas registradas.</p>
+    }
+  }
+
+  @for (tarea of datos.tareas(); track tarea.id) {
+    <article class="tarea">
+      <h3 [class.realizada]="tarea.realizada">
+        {{ tarea.titulo }}
+      </h3>
+
+      <p>{{ tarea.descripcion }}</p>
+
+      <p>Creador: {{ tarea.creadorCorreo }}</p>
+
+      @if (tarea.realizada) {
+        <p>Estado: realizada.</p>
+      } @else {
+        <p>Estado: pendiente.</p>
+      }
+
+      @if (datos.puedeModificar(tarea)) {
+        <div class="acciones">
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-sm"
+            (click)="seleccionarEditar(tarea)"
+            [disabled]="pendiente()"
+          >
+            Editar
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            (click)="cambiarEstado(tarea)"
+            [disabled]="pendiente()"
+          >
+            @if (tarea.realizada) {
+              Marcar pendiente
+            } @else {
+              Marcar realizada
+            }
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm"
+            (click)="eliminar(tarea)"
+            [disabled]="pendiente()"
+          >
+            Eliminar
+          </button>
+        </div>
+      } @else {
+        <p>Solo puedes consultar esta tarea.</p>
+      }
+    </article>
+  }
+</section>

@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  flex: 0 0 240px;
+  width: 240px;
+}
+
+nav {
+  height: 100%;
+  padding: 18px 14px;
+  background-color: #f3f5f7;
+  border: 1px solid #d3d9df;
+  border-top: 4px solid #365f82;
+  border-radius: 4px;
+}
+
+h2 {
+  margin: 0 0 18px;
+  padding: 0 8px 14px;
+  border-bottom: 1px solid #cbd3da;
+  color: #294b68;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+@media (max-width: 700px) {
+  :host {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
