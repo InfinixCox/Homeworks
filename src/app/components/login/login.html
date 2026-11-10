@@ -1,0 +1,47 @@
+<section class="panel-acceso">
+  <header class="cabecera-acceso">
+    <p class="subtitulo">Gestor de tareas</p>
+    <h2>Iniciar sesión</h2>
+  </header>
+
+  <form class="cuerpo-acceso" (ngSubmit)="entrar()">
+    <label for="email">Correo electrónico</label>
+    <input
+      id="email"
+      type="email"
+      name="email"
+      autocomplete="username"
+      placeholder="correo@ejemplo.com"
+      [ngModel]="email()"
+      (ngModelChange)="email.set($event)"
+    >
+
+    <label for="clave">Contraseña</label>
+    <div class="campo-clave">
+      <input
+        id="clave"
+        name="clave"
+        autocomplete="current-password"
+        [type]="verClave() ? 'text' : 'password'"
+        [ngModel]="clave()"
+        (ngModelChange)="clave.set($event)"
+      >
+      <button type="button" class="ver-clave" (click)="alternarClave()">
+        @if (verClave()) { Ocultar } @else { Mostrar }
+      </button>
+    </div>
+
+    <button type="submit" class="boton-ancho" [disabled]="pendiente()">
+      @if (pendiente()) { Procesando... } @else { Entrar }
+    </button>
+
+    @if (mensaje() !== '') {
+      <p class="aviso-error">{{ mensaje() }}</p>
+    }
+  </form>
+
+  <footer class="pie-acceso">
+    ¿No tienes cuenta?
+    <a routerLink="/registro">Crear cuenta</a>
+  </footer>
+</section>

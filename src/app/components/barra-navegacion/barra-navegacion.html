@@ -1,0 +1,15 @@
+<header class="barra">
+  <h1>Estructuras de Datos II - Challenge 10</h1>
+
+  @if (auth.session()) {
+    <nav>
+      <a routerLink="/tareas" routerLinkActive="activo">Tareas</a>
+      <a routerLink="/perfil" routerLinkActive="activo">Perfil</a>
+    </nav>
+
+    <div class="derecha">
+      <span class="usuario">{{ auth.session()?.user?.email }}</span>
+      <button class="boton-secundario" (click)="salir()">Cerrar sesión</button>
+    </div>
+  }
+</header>

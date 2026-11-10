@@ -1,0 +1,66 @@
+<section class="tarjeta-tareas">
+  <h2>Mis tareas</h2>
+
+  <form class="nueva-tarea" (ngSubmit)="agregar()">
+    <input
+      type="text"
+      name="nueva"
+      placeholder="Nueva tarea"
+      maxlength="100"
+      [ngModel]="nueva()"
+      (ngModelChange)="nueva.set($event)"
+    >
+    <button type="submit" class="boton-principal" [disabled]="pendiente()">
+      Agregar
+    </button>
+  </form>
+
+  @if (mensaje() !== '') {
+    <p class="mensaje">{{ mensaje() }}</p>
+  }
+
+  @if (cargando()) {
+    <p>Cargando tareas...</p>
+  } @else {
+    <p class="total">Total de tareas: {{ tareas().length }}</p>
+
+    <ul class="lista">
+      @for (tarea of tareas(); track tarea.id) {
+        <li class="tarea" [class.completada]="tarea.completada">
+          <input
+            type="checkbox"
+            [checked]="tarea.completada"
+            (change)="completar(tarea)"
+            [disabled]="pendiente()"
+          >
+
+          @if (editandoId() === tarea.id) {
+            <input
+              type="text"
+              class="edicion"
+              maxlength="100"
+              [ngModel]="textoEdicion()"
+              (ngModelChange)="textoEdicion.set($event)"
+            >
+            <button class="boton-principal" (click)="guardarEdicion(tarea)" [disabled]="pendiente()">
+              Guardar
+            </button>
+            <button class="boton-secundario" (click)="cancelarEdicion()">
+              Cancelar
+            </button>
+          } @else {
+            <span class="titulo">{{ tarea.titulo }}</span>
+            <button class="boton-secundario" (click)="iniciarEdicion(tarea)" [disabled]="pendiente()">
+              Editar
+            </button>
+            <button class="boton-peligro" (click)="borrar(tarea)" [disabled]="pendiente()">
+              Borrar
+            </button>
+          }
+        </li>
+      } @empty {
+        <li class="vacia">No tienes tareas todavía.</li>
+      }
+    </ul>
+  }
+</section>

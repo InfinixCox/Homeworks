@@ -1,0 +1,60 @@
+<section class="panel-acceso">
+  <header class="cabecera-acceso">
+    <p class="subtitulo">Gestor de tareas</p>
+    <h2>Crear una cuenta</h2>
+  </header>
+
+  <form class="cuerpo-acceso" (ngSubmit)="registrar()">
+    <label for="email">Correo electrónico</label>
+    <input
+      id="email"
+      type="email"
+      name="email"
+      autocomplete="username"
+      placeholder="correo@ejemplo.com"
+      [ngModel]="email()"
+      (ngModelChange)="email.set($event)"
+    >
+
+    <label for="clave">Contraseña</label>
+    <div class="campo-clave">
+      <input
+        id="clave"
+        name="clave"
+        autocomplete="new-password"
+        placeholder="Mínimo 6 caracteres"
+        [type]="verClave() ? 'text' : 'password'"
+        [ngModel]="clave()"
+        (ngModelChange)="clave.set($event)"
+      >
+      <button type="button" class="ver-clave" (click)="alternarClave()">
+        @if (verClave()) { Ocultar } @else { Mostrar }
+      </button>
+    </div>
+
+    <label for="confirmar">Confirmar contraseña</label>
+    <input
+      id="confirmar"
+      name="confirmar"
+      autocomplete="new-password"
+      [type]="verClave() ? 'text' : 'password'"
+      [ngModel]="confirmar()"
+      (ngModelChange)="confirmar.set($event)"
+    >
+
+    <button type="submit" class="boton-ancho" [disabled]="pendiente()">
+      @if (pendiente()) { Procesando... } @else { Registrarse }
+    </button>
+
+    @if (mensaje() !== '') {
+      <p [class]="tipoMensaje() === 'error' ? 'aviso-error' : 'aviso-exito'">
+        {{ mensaje() }}
+      </p>
+    }
+  </form>
+
+  <footer class="pie-acceso">
+    ¿Ya tienes cuenta?
+    <a routerLink="/login">Iniciar sesión</a>
+  </footer>
+</section>

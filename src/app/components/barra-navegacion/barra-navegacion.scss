@@ -1,0 +1,57 @@
+@use '../../../styles/variables' as *;
+
+.barra {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: $espacio;
+  padding: $espacio * 0.75 $espacio;
+  background-color: white;
+  border-bottom: 1px solid $color-borde;
+
+  h1 {
+    justify-self: start;
+    margin: 0;
+    font-size: 1.2rem;
+    color: $color-principal;
+  }
+
+  nav {
+    display: flex;
+    gap: $espacio * 1.5;
+
+    a {
+      color: $color-secundario;
+      text-decoration: none;
+
+      &.activo {
+        color: $color-principal;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .derecha {
+    display: flex;
+    align-items: center;
+    gap: $espacio;
+    justify-self: end;
+  }
+
+  .usuario {
+    color: $color-tenue;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .barra {
+    grid-template-columns: 1fr;
+    justify-items: center;
+
+    h1,
+    .derecha {
+      justify-self: center;
+    }
+  }
+}

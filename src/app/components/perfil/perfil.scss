@@ -1,0 +1,43 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.tarjeta-perfil {
+  @include tarjeta(380px);
+  text-align: center;
+
+  h2 {
+    margin-top: 0;
+    color: $color-principal;
+  }
+
+  .avatar,
+  .sin-avatar {
+    width: 160px;
+    height: 160px;
+    margin: $espacio auto;
+    border-radius: 50%;
+  }
+
+  .avatar {
+    display: block;
+    object-fit: cover;
+    border: 1px solid $color-borde;
+  }
+
+  .sin-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-fondo;
+    color: $color-tenue;
+  }
+
+  .subir {
+    @include boton($color-principal);
+    display: inline-block;
+
+    input {
+      display: none;
+    }
+  }
+}

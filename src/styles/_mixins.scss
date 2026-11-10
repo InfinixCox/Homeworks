@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+@mixin tarjeta($ancho) {
+  max-width: $ancho;
+  margin: $espacio * 2 auto;
+  padding: $espacio * 1.5;
+  background-color: white;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+}
+
+@mixin boton($color) {
+  padding: 8px 14px;
+  border: 1px solid $color;
+  border-radius: $radio;
+  background-color: $color;
+  color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.9);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin aviso($color, $fondo) {
+  margin: $espacio 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid $color;
+  border-radius: $radio;
+  background-color: $fondo;
+  color: $color;
+  font-size: 0.9rem;
+}

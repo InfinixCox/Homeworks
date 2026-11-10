@@ -1,0 +1,55 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.tarjeta-tareas {
+  @include tarjeta(640px);
+
+  h2 {
+    margin-top: 0;
+    color: $color-principal;
+  }
+
+  .nueva-tarea {
+    display: flex;
+    gap: $espacio * 0.5;
+  }
+
+  .total {
+    color: $color-tenue;
+    font-size: 0.9rem;
+  }
+}
+
+.lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tarea {
+  display: flex;
+  align-items: center;
+  gap: $espacio * 0.5;
+  padding: $espacio * 0.75 0;
+  border-bottom: 1px solid $color-borde;
+
+  .titulo {
+    flex-grow: 1;
+    overflow-wrap: anywhere;
+  }
+
+  .edicion {
+    flex-grow: 1;
+  }
+
+  &.completada .titulo {
+    color: $color-tenue;
+    text-decoration: line-through;
+  }
+}
+
+.vacia {
+  padding: $espacio 0;
+  color: $color-tenue;
+  text-align: center;
+}
