@@ -1,0 +1,176 @@
+<main class="pagina">
+  <h1>Estructuras de Datos II - Challenge 11</h1>
+  <p class="descripcion">Grafo de amigos y ciudades</p>
+
+  <div class="distribucion">
+    <aside class="columna">
+      <section class="tarjeta">
+        <h2>Agregar ciudad</h2>
+        <label for="nombreCiudad">Nombre</label>
+        <input
+          id="nombreCiudad"
+          type="text"
+          [ngModel]="nombreCiudad()"
+          (ngModelChange)="nombreCiudad.set($event)"
+        >
+        <button class="boton-principal" (click)="agregarCiudad()">Agregar ciudad</button>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Agregar persona</h2>
+        <label for="nombrePersona">Nombre</label>
+        <input
+          id="nombrePersona"
+          type="text"
+          [ngModel]="nombrePersona()"
+          (ngModelChange)="nombrePersona.set($event)"
+        >
+
+        <label for="edadPersona">Edad</label>
+        <input
+          id="edadPersona"
+          type="number"
+          min="1"
+          [ngModel]="edadPersona()"
+          (ngModelChange)="edadPersona.set($event)"
+        >
+
+        <label for="ciudadPersona">Ciudad donde vive</label>
+        <select
+          id="ciudadPersona"
+          [ngModel]="ciudadPersona()"
+          (ngModelChange)="ciudadPersona.set($event)"
+        >
+          <option value="">Selecciona una ciudad</option>
+          @for (ciudad of datos.ciudades(); track ciudad.id) {
+            <option [value]="ciudad.id">{{ ciudad.nombre }}</option>
+          }
+        </select>
+
+        <button class="boton-principal" (click)="agregarPersona()">Agregar persona</button>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Unir amigos</h2>
+        <label for="amigoA">Primera persona</label>
+        <select id="amigoA" [ngModel]="amigoA()" (ngModelChange)="amigoA.set($event)">
+          <option value="">Selecciona una persona</option>
+          @for (persona of datos.personas(); track persona.id) {
+            <option [value]="persona.id">{{ persona.nombre }}</option>
+          }
+        </select>
+
+        <label for="amigoB">Segunda persona</label>
+        <select id="amigoB" [ngModel]="amigoB()" (ngModelChange)="amigoB.set($event)">
+          <option value="">Selecciona una persona</option>
+          @for (persona of datos.personas(); track persona.id) {
+            <option [value]="persona.id">{{ persona.nombre }}</option>
+          }
+        </select>
+
+        <button class="boton-principal" (click)="agregarAmistad()">Unir como amigos</button>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Eliminar nodo</h2>
+        <label for="nodoEliminar">Persona o ciudad</label>
+        <select id="nodoEliminar" [ngModel]="nodoEliminar()" (ngModelChange)="nodoEliminar.set($event)">
+          <option value="">Selecciona un nodo</option>
+          @for (nodo of datos.grafo.nodes; track nodo.id) {
+            <option [value]="nodo.id">
+              {{ nodo.nombre }} ({{ nodo.tipo }})
+            </option>
+          }
+        </select>
+
+        <button class="boton-peligro" (click)="eliminarNodo()">Eliminar</button>
+      </section>
+
+      @if (mensaje() !== '') {
+        <p [class]="tipoMensaje() === 'error' ? 'aviso-error' : 'aviso-exito'">
+          {{ mensaje() }}
+        </p>
+      }
+    </aside>
+
+    <div class="columna">
+      <section class="tarjeta">
+        <h2>Grafo</h2>
+
+        @if (datos.grafo.isEmpty()) {
+          <p class="vacio">El grafo está vacío.</p>
+        } @else {
+          <app-vista-grafo
+            [seleccionadoId]="seleccionadoId()"
+            (seleccionar)="seleccionarNodo($event)"
+          />
+        }
+
+        <div class="leyenda">
+          <span><i class="punto-ciudad"></i> Ciudad</span>
+          <span><i class="punto-persona"></i> Persona</span>
+          <span><i class="linea-vive"></i> Vive en</span>
+          <span><i class="linea-amistad"></i> Amistad</span>
+        </div>
+        <p class="ayuda">Haz clic en un nodo para ver sus conexiones.</p>
+      </section>
+
+      <div class="fila">
+        <section class="tarjeta">
+          <h2>Personas que viven en...</h2>
+          <select [ngModel]="ciudadConsulta()" (ngModelChange)="ciudadConsulta.set($event)">
+            <option value="">Selecciona una ciudad</option>
+            @for (ciudad of datos.ciudades(); track ciudad.id) {
+              <option [value]="ciudad.id">{{ ciudad.nombre }}</option>
+            }
+          </select>
+
+          @if (ciudadConsulta() !== '') {
+            <ul class="lista">
+              @for (persona of datos.personasDeCiudad(ciudadConsulta()); track persona.id) {
+                <li>
+                  <span>{{ persona.nombre }}</span>
+                  <span class="dato">{{ persona.edad }} años</span>
+                </li>
+              } @empty {
+                <li class="vacio">Nadie vive en esta ciudad todavía.</li>
+              }
+            </ul>
+
+            <button class="boton-secundario" (click)="imprimirCiudad()">Imprimir en consola</button>
+          }
+        </section>
+
+        <section class="tarjeta">
+          <h2>Conexiones del nodo</h2>
+
+          @if (nodoSeleccionado(); as nodo) {
+            <p class="nodo-actual">
+              <strong>{{ nodo.nombre }}</strong>
+              @if (nodo.tipo === 'persona') {
+                — {{ nodo.edad }} años, vive en {{ nombreCiudadDe(nodo.ciudadId) }}
+              } @else {
+                — ciudad
+              }
+            </p>
+
+            <ul class="lista">
+              @for (vecino of datos.conexiones(nodo.id); track vecino.id) {
+                <li>
+                  <span>{{ vecino.nombre }}</span>
+                  <span class="dato">
+                    @if (vecino.tipo === 'ciudad') { ciudad } @else if (nodo.tipo === 'ciudad') { habitante } @else { amigo }
+                  </span>
+                </li>
+              } @empty {
+                <li class="vacio">Este nodo no tiene conexiones.</li>
+              }
+            </ul>
+          } @else {
+            <p class="vacio">Ningún nodo seleccionado.</p>
+          }
+        </section>
+      </div>
+    </div>
+  </div>
+</main>

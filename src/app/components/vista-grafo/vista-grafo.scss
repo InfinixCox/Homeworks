@@ -1,0 +1,58 @@
+@use '../../../styles/variables' as *;
+
+:host {
+  display: block;
+}
+
+.lienzo {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: $color-fondo;
+  border-radius: $radio;
+}
+
+line {
+  stroke: $color-borde;
+  stroke-width: 2;
+
+  &.amistad {
+    stroke: $color-persona;
+    stroke-dasharray: 6 4;
+  }
+}
+
+.nodo {
+  cursor: pointer;
+
+  circle {
+    fill: $color-persona;
+    stroke: white;
+    stroke-width: 2;
+  }
+
+  text {
+    fill: $color-texto;
+    font-size: 12px;
+    text-anchor: middle;
+    paint-order: stroke;
+    stroke: $color-fondo;
+    stroke-width: 4px;
+  }
+
+  &.ciudad {
+    circle {
+      fill: $color-ciudad;
+    }
+
+    text {
+      font-weight: bold;
+      fill: $color-ciudad;
+    }
+  }
+
+  &.seleccionado circle {
+    stroke: $color-texto;
+    stroke-width: 3;
+  }
+}

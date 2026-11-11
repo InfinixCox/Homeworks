@@ -1,0 +1,146 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $espacio;
+
+  h1 {
+    margin: $espacio 0 4px;
+    color: $color-principal;
+    text-align: center;
+  }
+
+  .descripcion {
+    margin: 0 0 $espacio * 1.5;
+    color: $color-tenue;
+    text-align: center;
+  }
+}
+
+.distribucion {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: $espacio;
+  align-items: start;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: $espacio;
+  min-width: 0;
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $espacio;
+}
+
+.tarjeta {
+  @include tarjeta(none);
+  margin: 0;
+  padding: $espacio * 1.25;
+
+  h2 {
+    margin: 0 0 $espacio * 0.75;
+    color: $color-principal;
+    font-size: 1.1rem;
+  }
+
+  label {
+    display: block;
+    margin: $espacio * 0.75 0 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+
+  button {
+    width: 100%;
+    margin-top: $espacio;
+  }
+}
+
+.leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $espacio;
+  margin-top: $espacio * 0.75;
+  font-size: 0.85rem;
+  color: $color-secundario;
+
+  i {
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .punto-ciudad,
+  .punto-persona {
+    border-radius: 50%;
+  }
+
+  .punto-ciudad {
+    width: 14px;
+    height: 14px;
+    background-color: $color-ciudad;
+  }
+
+  .punto-persona {
+    width: 10px;
+    height: 10px;
+    background-color: $color-persona;
+  }
+
+  .linea-vive,
+  .linea-amistad {
+    width: 22px;
+    border-top: 2px solid $color-borde;
+  }
+
+  .linea-amistad {
+    border-top: 2px dashed $color-persona;
+  }
+}
+
+.ayuda {
+  margin: 6px 0 0;
+  color: $color-tenue;
+  font-size: 0.8rem;
+}
+
+.lista {
+  margin: $espacio * 0.75 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid $color-borde;
+  }
+
+  .dato {
+    color: $color-tenue;
+    font-size: 0.9rem;
+  }
+}
+
+.nodo-actual {
+  margin: 0;
+}
+
+.vacio {
+  color: $color-tenue;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .distribucion,
+  .fila {
+    grid-template-columns: 1fr;
+  }
+}

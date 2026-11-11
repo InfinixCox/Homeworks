@@ -1,0 +1,24 @@
+<svg class="lienzo" [attr.viewBox]="'0 0 ' + ancho + ' ' + alto">
+  @for (linea of lineas(); track $index) {
+    <line
+      [attr.x1]="linea.x1"
+      [attr.y1]="linea.y1"
+      [attr.x2]="linea.x2"
+      [attr.y2]="linea.y2"
+      [class.amistad]="linea.amistad"
+    />
+  }
+
+  @for (punto of puntos(); track punto.id) {
+    <g
+      class="nodo"
+      [class.ciudad]="punto.tipo === 'ciudad'"
+      [class.seleccionado]="punto.id === seleccionadoId"
+      [attr.transform]="'translate(' + punto.x + ',' + punto.y + ')'"
+      (click)="seleccionar.emit(punto.id)"
+    >
+      <circle [attr.r]="punto.tipo === 'ciudad' ? 22 : 13" />
+      <text [attr.y]="punto.tipo === 'ciudad' ? 38 : 28">{{ punto.etiqueta }}</text>
+    </g>
+  }
+</svg>
