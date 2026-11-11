@@ -5,12 +5,8 @@ import { Producto } from './producto';
 export class MinHeap {
   heap: Producto[];
 
-  constructor(initial: Producto[] = []) {
+  constructor() {
     this.heap = [];
-    if (initial.length > 0) {
-      this.heap = [...initial];
-      this.heapify();
-    }
   }
 
   push(value: Producto): void {
@@ -25,17 +21,6 @@ export class MinHeap {
     const min = this.heap.pop();
     this.percolateDown(0);
     return min;
-  }
-
-  peek(): Producto | undefined {
-    return this.heap[0];
-  }
-
-  heapify(): void {
-    const start = Math.floor((this.heap.length - 2) / 2);
-    for (let i = start; i >= 0; i--) {
-      this.percolateDown(i);
-    }
   }
 
   percolateDown(index: number): void {
@@ -75,9 +60,5 @@ export class MinHeap {
 
   size(): number {
     return this.heap.length;
-  }
-
-  toArray(): Producto[] {
-    return [...this.heap];
   }
 }

@@ -10,7 +10,7 @@ export class Trie {
   }
 
   // Igual al insert del profesor: se recorre letra por letra y se crean
-  // los nodos que falten. Al final se marca isEndOfWord y se guarda el producto.
+  // los nodos que falten. Al final se marca isEndOfWord y se guarda la popularidad.
   // Devuelve true si el nombre era nuevo y false si ya existía (se actualiza).
   insert(producto: Producto): boolean {
     const word = this.normalizar(producto.name);
@@ -23,7 +23,7 @@ export class Trie {
     }
     const esNuevo = !current.isEndOfWord;
     current.isEndOfWord = true;
-    current.producto = { name: word, popularity: producto.popularity };
+    current.popularity = producto.popularity;
     return esNuevo;
   }
 
@@ -42,25 +42,28 @@ export class Trie {
   // Busca por prefijo: baja hasta el nodo del prefijo (como en search)
   // y desde ahí junta todos los productos que hay debajo.
   searchPrefix(prefix: string): Producto[] {
+    const palabra = this.normalizar(prefix);
     let current = this.root;
-    for (let character of this.normalizar(prefix)) {
+    for (let character of palabra) {
       if (current.children[character] === undefined) {
         return [];
       }
       current = current.children[character];
     }
     const resultado: Producto[] = [];
-    this.recolectar(current, resultado);
+    this.recolectar(current, palabra, resultado);
     return resultado;
   }
 
-  // Recorrido recursivo por los hijos (como en los árboles)
-  private recolectar(nodo: NodoTrie, resultado: Producto[]): void {
-    if (nodo.isEndOfWord && nodo.producto !== null) {
-      resultado.push(nodo.producto);
+  // Recorrido recursivo por los hijos (como en los árboles).
+  // El nombre se arma juntando la letra (value) de cada nodo del camino.
+  private recolectar(nodo: NodoTrie, palabra: string, resultado: Producto[]): void {
+    if (nodo.isEndOfWord) {
+      resultado.push({ name: palabra, popularity: nodo.popularity });
     }
     for (let letra in nodo.children) {
-      this.recolectar(nodo.children[letra], resultado);
+      const hijo = nodo.children[letra];
+      this.recolectar(hijo, palabra + hijo.value, resultado);
     }
   }
 
@@ -76,10 +79,6 @@ export class Trie {
       total = total + 1 + this.contarNodos(nodo.children[letra]);
     }
     return total;
-  }
-
-  isEmpty(): boolean {
-    return Object.keys(this.root.children).length === 0;
   }
 
   // "Air Max " y "air max" se guardan y se buscan igual
