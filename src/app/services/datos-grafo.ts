@@ -145,12 +145,4 @@ export class DatosGrafo {
 
     return vecinos;
   }
-
-  imprimirConexiones(id: string): void {
-    this.grafo.printAdjacency(id);
-  }
-
-  imprimir(): void {
-    this.grafo.printGraph();
-  }
 }

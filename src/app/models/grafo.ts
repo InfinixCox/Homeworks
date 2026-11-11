@@ -35,15 +35,6 @@ export class Grafo {
     return this.nodes.find(n => n.id === id);
   }
 
-  printAdjacency(id: string): string[] {
-    if (!this.searchNode(id)) {
-      return [];
-    }
-
-    console.log(this.adjList[id]);
-    return this.adjList[id];
-  }
-
   isEmpty(): boolean {
     return this.nodes.length === 0;
   }
@@ -63,10 +54,6 @@ export class Grafo {
     delete this.adjList[id];
     this.nodes = this.nodes.filter(n => n.id !== id);
     return true;
-  }
-
-  printGraph(): void {
-    console.log(this.adjList);
   }
 
   personasDeCiudad(ciudadId: string): NodoGrafo[] {

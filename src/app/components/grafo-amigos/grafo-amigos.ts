@@ -88,7 +88,6 @@ export class GrafoAmigos {
 
   seleccionarNodo(id: string): void {
     this.seleccionadoId.set(id);
-    this.datos.imprimirConexiones(id);
   }
 
   nodoSeleccionado(): NodoGrafo | undefined {
@@ -98,24 +97,5 @@ export class GrafoAmigos {
   nombreCiudadDe(ciudadId: string | undefined): string {
     const ciudad = this.datos.grafo.searchNode(ciudadId ?? '');
     return ciudad ? ciudad.nombre : '';
-  }
-
-  imprimirCiudad(): void {
-    const ciudad = this.datos.grafo.searchNode(this.ciudadConsulta());
-
-    if (!ciudad) {
-      return;
-    }
-
-    const personas = this.datos.personasDeCiudad(ciudad.id);
-
-    console.log('Personas que viven en ' + ciudad.nombre + ':');
-
-    for (let i = 0; i < personas.length; i++) {
-      console.log('- ' + personas[i].nombre + ', ' + personas[i].edad + ' años');
-    }
-
-    console.log('Lista de adyacencia del grafo:');
-    this.datos.imprimir();
   }
 }
