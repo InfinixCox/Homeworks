@@ -1,0 +1,139 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $espacio;
+
+  h1 {
+    margin: $espacio 0 4px;
+    color: $color-principal;
+    text-align: center;
+  }
+
+  .descripcion {
+    margin: 0 0 $espacio * 1.5;
+    color: $color-tenue;
+    text-align: center;
+  }
+}
+
+.distribucion {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: $espacio;
+  align-items: start;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: $espacio;
+  min-width: 0;
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $espacio;
+}
+
+.tarjeta {
+  @include tarjeta(none);
+  margin: 0;
+  padding: $espacio * 1.25;
+
+  h2 {
+    margin: 0 0 $espacio * 0.75;
+    color: $color-principal;
+    font-size: 1.1rem;
+  }
+
+  label {
+    display: block;
+    margin: $espacio * 0.75 0 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+
+  button {
+    width: 100%;
+    margin-top: $espacio;
+  }
+}
+
+.mensaje {
+  margin-top: $espacio * 0.75;
+}
+
+.ayuda {
+  margin: 6px 0 0;
+  color: $color-tenue;
+  font-size: 0.8rem;
+}
+
+.lista {
+  margin: $espacio * 0.5 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid $color-borde;
+  }
+}
+
+.dato {
+  color: $color-tenue;
+  font-size: 0.9rem;
+}
+
+.vacio {
+  color: $color-tenue;
+  justify-content: center;
+}
+
+.ranking {
+  margin: $espacio 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: $espacio * 0.75;
+    padding: 10px 0;
+    border-bottom: 1px solid $color-borde;
+  }
+
+  .puesto {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: $color-principal;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+
+  .nombre {
+    flex: 1;
+  }
+
+  li:first-child .puesto {
+    outline: 3px solid $color-foco;
+  }
+}
+
+@media (max-width: 900px) {
+  .distribucion,
+  .fila {
+    grid-template-columns: 1fr;
+  }
+}

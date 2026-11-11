@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { BuscadorProductos } from './components/buscador-productos/buscador-productos';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [BuscadorProductos],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('Tries-heaps');
-}
+export class App {}

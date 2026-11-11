@@ -1,0 +1,74 @@
+<main class="pagina">
+  <h1>Estructuras de Datos II - Challenge 12</h1>
+  <p class="descripcion">Buscador inteligente: los productos se guardan en un Trie y el Top K se obtiene con un MinHeap.</p>
+
+  <div class="distribucion">
+    <section class="columna">
+      <div class="tarjeta">
+        <h2>Agregar producto</h2>
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" placeholder="Ej: air max" [ngModel]="nombre()" (ngModelChange)="nombre.set($event)" />
+
+        <label for="popularidad">Popularidad (0 a 100)</label>
+        <input id="popularidad" type="number" min="0" max="100" placeholder="Ej: 90" [ngModel]="popularidad()" (ngModelChange)="popularidad.set($event)" />
+
+        <button class="boton-principal" (click)="agregar()">Agregar</button>
+
+        @if (error()) {
+          <p class="aviso-error mensaje">{{ error() }}</p>
+        }
+        @if (exito()) {
+          <p class="aviso-exito mensaje">{{ exito() }}</p>
+        }
+      </div>
+
+      <div class="tarjeta">
+        <h2>Productos guardados</h2>
+        <p class="ayuda">{{ buscador.productos().length }} productos · {{ buscador.totalNodos() }} nodos en el Trie</p>
+        <ul class="lista">
+          @for (producto of buscador.productos(); track producto.name) {
+            <li>
+              <span>{{ producto.name }}</span>
+              <span class="dato">{{ producto.popularity }}</span>
+            </li>
+          } @empty {
+            <li class="vacio">No hay productos</li>
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="columna">
+      <div class="tarjeta">
+        <h2>Buscador</h2>
+        <div class="fila">
+          <div>
+            <label for="prefijo">Prefijo</label>
+            <input id="prefijo" type="text" placeholder="Ej: air" [ngModel]="prefijo()" (ngModelChange)="cambiarPrefijo($event)" />
+          </div>
+          <div>
+            <label for="k">Top K</label>
+            <input id="k" type="number" min="1" [ngModel]="k()" (ngModelChange)="cambiarK($event)" />
+          </div>
+        </div>
+        <p class="ayuda">Si el prefijo está vacío se muestra el Top K de todos los productos.</p>
+
+        @if (errorK()) {
+          <p class="aviso-error mensaje">{{ errorK() }}</p>
+        } @else {
+          <ol class="ranking">
+            @for (producto of resultado(); track producto.name; let i = $index) {
+              <li>
+                <span class="puesto">{{ i + 1 }}</span>
+                <span class="nombre">{{ producto.name }}</span>
+                <span class="dato">{{ producto.popularity }}</span>
+              </li>
+            } @empty {
+              <li class="vacio">Ningún producto empieza por "{{ prefijo() }}"</li>
+            }
+          </ol>
+        }
+      </div>
+    </section>
+  </div>
+</main>
