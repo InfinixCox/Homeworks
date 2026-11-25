@@ -2,6 +2,7 @@
 @use 'styles/mixins' as *;
 
 body {
+  color-scheme: dark;
   margin: 0;
   background-color: $color-fondo;
   color: $color-texto;
@@ -16,7 +17,8 @@ select {
   border: 1px solid $color-borde;
   border-radius: $radio;
   box-sizing: border-box;
-  background-color: white;
+  background-color: $color-fondo;
+  color: $color-texto;
   font-size: 0.95rem;
 
   &:focus {
