@@ -1,0 +1,54 @@
+<div class="tarjeta">
+  <h2>Canciones relacionadas</h2>
+
+  <label for="seleccionada">Canción</label>
+  <select id="seleccionada" [ngModel]="seleccionada()" (ngModelChange)="cambiarSeleccion($event)">
+    <option value="">Selecciona una canción</option>
+    @for (cancion of musica.canciones(); track cancion.titulo) {
+      <option [value]="cancion.titulo">{{ cancion.titulo }}</option>
+    }
+  </select>
+
+  @if (seleccionada() !== '') {
+    <p class="ayuda">Si te gusta "{{ seleccionada() }}", también te puede gustar:</p>
+    <ul class="lista">
+      @for (cancion of relacionadas(); track cancion.titulo) {
+        <li>
+          <span>{{ cancion.titulo }}</span>
+          <span class="dato">{{ cancion.reproducciones.toLocaleString('es-CO') }}</span>
+        </li>
+      } @empty {
+        <li class="vacio">Esta canción no tiene relacionadas</li>
+      }
+    </ul>
+  }
+</div>
+
+<div class="tarjeta">
+  <h2>Relacionar canciones</h2>
+
+  <label for="tituloA">Canción 1</label>
+  <select id="tituloA" [ngModel]="tituloA()" (ngModelChange)="tituloA.set($event)">
+    <option value="">Selecciona una canción</option>
+    @for (cancion of musica.canciones(); track cancion.titulo) {
+      <option [value]="cancion.titulo">{{ cancion.titulo }}</option>
+    }
+  </select>
+
+  <label for="tituloB">Canción 2</label>
+  <select id="tituloB" [ngModel]="tituloB()" (ngModelChange)="tituloB.set($event)">
+    <option value="">Selecciona una canción</option>
+    @for (cancion of musica.canciones(); track cancion.titulo) {
+      <option [value]="cancion.titulo">{{ cancion.titulo }}</option>
+    }
+  </select>
+
+  <button class="boton-principal" (click)="conectar()">Relacionar</button>
+
+  @if (error()) {
+    <p class="aviso-error mensaje">{{ error() }}</p>
+  }
+  @if (exito()) {
+    <p class="aviso-exito mensaje">{{ exito() }}</p>
+  }
+</div>

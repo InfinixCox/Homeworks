@@ -1,1 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+body {
+  margin: 0;
+  background-color: $color-fondo;
+  color: $color-texto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type='text'],
+input[type='number'],
+select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+  box-sizing: border-box;
+  background-color: white;
+  font-size: 0.95rem;
+
+  &:focus {
+    outline: 2px solid $color-foco;
+    border-color: $color-principal;
+  }
+}
+
+.boton-principal { @include boton($color-principal); }
+.boton-secundario { @include boton($color-secundario); }
+.boton-peligro { @include boton($color-peligro); }
+.aviso-error { @include aviso($color-peligro, $color-error-fondo); }
+.aviso-exito { @include aviso($color-principal, $color-exito-fondo); }
+
+// Tarjetas del dashboard: las usan los tres componentes
+.tarjeta {
+  @include tarjeta(none);
+  margin: 0;
+  padding: $espacio * 1.25;
+
+  h2 {
+    margin: 0 0 $espacio * 0.75;
+    color: $color-principal;
+    font-size: 1.1rem;
+  }
+
+  label {
+    display: block;
+    margin: $espacio * 0.75 0 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+
+  button {
+    width: 100%;
+    margin-top: $espacio;
+  }
+}
+
+.mensaje {
+  margin-top: $espacio * 0.75;
+}
+
+.ayuda {
+  margin: $espacio * 0.75 0 0;
+  color: $color-tenue;
+  font-size: 0.8rem;
+}
+
+.lista {
+  margin: $espacio * 0.5 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: $espacio;
+    padding: 8px 0;
+    border-bottom: 1px solid $color-borde;
+  }
+}
+
+.dato {
+  color: $color-tenue;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.vacio {
+  color: $color-tenue;
+  justify-content: center;
+}

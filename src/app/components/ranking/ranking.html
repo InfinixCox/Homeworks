@@ -1,0 +1,22 @@
+<div class="tarjeta">
+  <h2>TOP 5 canciones más escuchadas</h2>
+
+  <ol class="ranking">
+    @for (cancion of musica.ranking(); track cancion.titulo; let i = $index) {
+      <li>
+        <span class="puesto">{{ i + 1 }}</span>
+        <div class="detalle">
+          <div class="encabezado">
+            <span>{{ cancion.titulo }}</span>
+            <span class="dato">{{ cancion.reproducciones.toLocaleString('es-CO') }}</span>
+          </div>
+          <div class="pista">
+            <div class="barra" [style.width.%]="porcentaje(cancion)"></div>
+          </div>
+        </div>
+      </li>
+    } @empty {
+      <li class="vacio">No hay canciones</li>
+    }
+  </ol>
+</div>

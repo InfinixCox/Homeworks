@@ -1,0 +1,44 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.ranking {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: $espacio * 0.75;
+    padding: 10px 0;
+    border-bottom: 1px solid $color-borde;
+  }
+
+  .puesto {
+    @include insignia($color-principal);
+  }
+
+  li:first-child .puesto {
+    outline: 3px solid $color-foco;
+  }
+}
+
+.detalle {
+  flex: 1;
+  min-width: 0;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  gap: $espacio;
+  margin-bottom: 6px;
+}
+
+.pista {
+  @include pista-barra;
+}
+
+.barra {
+  @include barra($color-principal);
+}

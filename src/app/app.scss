@@ -1,0 +1,39 @@
+@use '../styles/variables' as *;
+
+.pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $espacio;
+
+  h1 {
+    margin: $espacio 0 4px;
+    color: $color-principal;
+    text-align: center;
+  }
+
+  .descripcion {
+    margin: 0 0 $espacio * 1.5;
+    color: $color-tenue;
+    text-align: center;
+  }
+}
+
+.distribucion {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: $espacio;
+  align-items: start;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: $espacio;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .distribucion {
+    grid-template-columns: 1fr;
+  }
+}
