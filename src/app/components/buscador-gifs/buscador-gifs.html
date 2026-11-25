@@ -1,0 +1,26 @@
+<main class="pagina">
+  <h1>Estructuras de Datos II - Challenge 13</h1>
+  <p class="descripcion">Buscador de GIFs con la API de GIPHY</p>
+
+  <div class="tarjeta">
+    <label for="busqueda">Buscar GIFs</label>
+    <input id="busqueda" type="text" placeholder="Ej: smile" [ngModel]="texto()" (ngModelChange)="cambiarTexto($event)" />
+
+    @if (giphy.cargando()) {
+      <p class="ayuda">Buscando...</p>
+    }
+    @if (giphy.error()) {
+      <p class="aviso-error mensaje">{{ giphy.error() }}</p>
+    }
+  </div>
+
+  <div class="cuadricula">
+    @for (gif of giphy.gifs(); track gif.id) {
+      <img [src]="gif.images.fixed_height.url" [alt]="gif.title" />
+    } @empty {
+      @if (texto().trim() !== '' && !giphy.cargando() && !giphy.error()) {
+        <p class="vacio">No se encontraron GIFs para "{{ texto().trim() }}"</p>
+      }
+    }
+  </div>
+</main>

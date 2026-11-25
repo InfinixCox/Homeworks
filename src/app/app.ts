@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { BuscadorGifs } from './components/buscador-gifs/buscador-gifs';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [BuscadorGifs],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('Giphy-search');
-}
+export class App {}

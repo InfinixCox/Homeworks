@@ -1,0 +1,65 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $espacio;
+
+  h1 {
+    margin: $espacio 0 4px;
+    color: $color-principal;
+    text-align: center;
+  }
+
+  .descripcion {
+    margin: 0 0 $espacio * 1.5;
+    color: $color-tenue;
+    text-align: center;
+  }
+}
+
+.tarjeta {
+  @include tarjeta(none);
+  margin: 0 0 $espacio;
+  padding: $espacio * 1.25;
+
+  label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+}
+
+.mensaje {
+  margin-top: $espacio * 0.75;
+}
+
+.ayuda {
+  margin: 6px 0 0;
+  color: $color-tenue;
+  font-size: 0.8rem;
+}
+
+.cuadricula {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $espacio * 0.75;
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border: 1px solid $color-borde;
+    border-radius: $radio;
+    background-color: white;
+  }
+}
+
+.vacio {
+  grid-column: 1 / -1;
+  margin: $espacio 0;
+  color: $color-tenue;
+  text-align: center;
+}
