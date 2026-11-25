@@ -7,7 +7,10 @@
         <span class="puesto">{{ i + 1 }}</span>
         <div class="detalle">
           <div class="encabezado">
-            <span>{{ cancion.titulo }}</span>
+            <div>
+              <span>{{ cancion.titulo }}</span>
+              <span class="artista">{{ cancion.artista }}</span>
+            </div>
             <span class="dato">{{ cancion.reproducciones.toLocaleString('es-CO') }}</span>
           </div>
           <div class="pista">

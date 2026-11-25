@@ -19,19 +19,19 @@ export class Musica {
   ranking = signal<Cancion[]>([]);
 
   constructor() {
-    this.agregar('Quiero Morir En Tu Piel', 2895565);
-    this.agregar('Ni Siquiera', 40143137);
-    this.agregar('Extraño Tu Amor', 4128566);
-    this.agregar('Tres Días', 3680248);
-    this.agregar('Corazon Embustero', 3072669);
-    this.agregar('Amanecer Así', 1035675);
-    this.agregar('En Barranquilla Me Quedo', 19892756);
-    this.agregar('Carro de Fuego', 271304);
-    this.agregar('El Muñeco de la Ciudad', 26124386);
-    this.agregar('Amiga Mía', 209249070);
-    this.agregar('Te Amo', 1463810);
-    this.agregar("Pa' Bravo Yo", 48421987);
-    this.agregar('Pasaporte', 4722086);
+    this.agregar('Quiero Morir En Tu Piel', 'El Gran Combo De New York', 2895565);
+    this.agregar('Ni Siquiera', 'Antonio Cartagena', 40143137);
+    this.agregar('Extraño Tu Amor', 'Guayacán Orquesta', 4128566);
+    this.agregar('Tres Días', "Alexander Abreu y Havana D'Primera", 3680248);
+    this.agregar('Corazon Embustero', 'Carlos Nuño y La Grande De Madrid', 3072669);
+    this.agregar('Amanecer Así', "Jhonsy de los Angeles y Alex D'gambo", 1035675);
+    this.agregar('En Barranquilla Me Quedo', 'Joe Arroyo y La Verdad', 19892756);
+    this.agregar('Carro de Fuego', 'Guayacán Orquesta', 271304);
+    this.agregar('El Muñeco de la Ciudad', 'Bobby Valentín', 26124386);
+    this.agregar('Amiga Mía', 'Michel El Buenón', 209249070);
+    this.agregar('Te Amo', 'Son De Cali', 1463810);
+    this.agregar("Pa' Bravo Yo", 'Justo Betancourt', 48421987);
+    this.agregar('Pasaporte', "Alexander Abreu y Havana D'Primera", 4722086);
 
     this.conectar('Quiero Morir En Tu Piel', 'Ni Siquiera');
     this.conectar('Ni Siquiera', 'Extraño Tu Amor');
@@ -49,11 +49,16 @@ export class Musica {
     this.conectar('Tres Días', 'Pasaporte');
   }
 
-  agregar(titulo: string, reproducciones: number): string {
+  agregar(titulo: string, artista: string, reproducciones: number): string {
     titulo = titulo.trim();
+    artista = artista.trim();
 
     if (titulo === '') {
       return 'Escribe el título de la canción.';
+    }
+
+    if (artista === '') {
+      return 'Escribe el artista de la canción.';
     }
 
     if (reproducciones === null || isNaN(reproducciones) || reproducciones < 0 || !Number.isInteger(reproducciones)) {
@@ -64,7 +69,7 @@ export class Musica {
       return 'Esa canción ya existe.';
     }
 
-    const cancion: Cancion = { titulo: titulo, reproducciones: reproducciones };
+    const cancion: Cancion = { titulo: titulo, artista: artista, reproducciones: reproducciones };
     this.trie.insert(cancion);
     this.heap.push(cancion);
     this.grafo.addNode(cancion);

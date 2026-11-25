@@ -14,6 +14,7 @@ export class BuscadorCanciones {
 
   // Formulario para insertar
   titulo = signal('');
+  artista = signal('');
   reproducciones = signal<number | null>(null);
   error = signal('');
   exito = signal('');
@@ -28,25 +29,24 @@ export class BuscadorCanciones {
     this.exito.set('');
     const titulo = this.titulo().trim();
     const reproducciones = this.reproducciones();
-    const mensaje = this.musica.agregar(titulo, reproducciones === null ? NaN : reproducciones);
+    const mensaje = this.musica.agregar(titulo, this.artista(), reproducciones === null ? NaN : reproducciones);
     this.error.set(mensaje);
 
     if (mensaje === '') {
       this.exito.set(`"${titulo}" se agregó al catálogo.`);
       this.titulo.set('');
+      this.artista.set('');
       this.reproducciones.set(null);
       this.cambiarTexto(this.texto());
     }
   }
 
-  // Sugerencias por prefijo mientras se escribe
   cambiarTexto(valor: string): void {
     this.texto.set(valor);
     this.resultado.set('');
     this.sugerencias.set(valor.trim() === '' ? [] : this.musica.sugerencias(valor));
   }
 
-  // Busca si el título completo existe en el Trie
   buscar(): void {
     const texto = this.texto().trim();
 

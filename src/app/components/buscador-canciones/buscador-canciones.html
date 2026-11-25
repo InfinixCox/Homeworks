@@ -4,6 +4,9 @@
   <label for="titulo">Título</label>
   <input id="titulo" type="text" placeholder="Ej: Te Amo" [ngModel]="titulo()" (ngModelChange)="titulo.set($event)" />
 
+  <label for="artista">Artista</label>
+  <input id="artista" type="text" placeholder="Ej: Son De Cali" [ngModel]="artista()" (ngModelChange)="artista.set($event)" />
+
   <label for="reproducciones">Reproducciones</label>
   <input id="reproducciones" type="number" min="0" placeholder="Ej: 1463810" [ngModel]="reproducciones()" (ngModelChange)="reproducciones.set($event)" />
 
@@ -34,7 +37,10 @@
     <ul class="lista">
       @for (cancion of sugerencias(); track cancion.titulo) {
         <li>
-          <span>{{ cancion.titulo }}</span>
+          <div>
+            <span>{{ cancion.titulo }}</span>
+            <span class="artista">{{ cancion.artista }}</span>
+          </div>
           <span class="dato">{{ cancion.reproducciones.toLocaleString('es-CO') }}</span>
         </li>
       } @empty {

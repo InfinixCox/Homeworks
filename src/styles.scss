@@ -33,7 +33,6 @@ select {
 .aviso-error { @include aviso($color-peligro, $color-error-fondo); }
 .aviso-exito { @include aviso($color-principal, $color-exito-fondo); }
 
-// Tarjetas del dashboard: las usan los tres componentes
 .tarjeta {
   @include tarjeta(none);
   margin: 0;
@@ -76,6 +75,7 @@ select {
   li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: $espacio;
     padding: 8px 0;
     border-bottom: 1px solid $color-borde;
@@ -86,6 +86,13 @@ select {
   color: $color-tenue;
   font-size: 0.9rem;
   white-space: nowrap;
+}
+
+.artista {
+  display: block;
+  margin-top: 2px;
+  color: $color-tenue;
+  font-size: 0.8rem;
 }
 
 .vacio {
